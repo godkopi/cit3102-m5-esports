@@ -1,58 +1,161 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+    <img src="screenshots/SpotifyLOGO.png" width="360" alt="Laravel Logo">
 </p>
 
-## About Laravel
+<h1 align="center">Esports API</h1>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### By Amadeo Yhulo D. Cruz VI
+### Section: IT3E
+### Resource Used: Esports
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+<hr>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+<h2>1. Project Information</h2>
 
-## Learning Laravel
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+<p>This API manages esports team records with <code>game_title</code>, <code>team_name</code>, <code>roster</code>, and <code>wins</code> fields. It uses Laravel Sanctum to protect resource endpoints.</p>
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+<h2>2. Setup Instructions</h2>
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+<p><strong>Prerequisites:</strong> PHP, Composer, Git, and PHP SQLite extensions (<code>pdo_sqlite</code> and <code>sqlite3</code>).</p>
 
-## Agentic Development
+<h3>Step 1 — Clone the repository</h3>
+git clone https://github.com/godkopi/cit3102-m5-esports.git
+cd cit3102-m5-esports
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+<h3>Step 2 — Install PHP dependencies</h3>
 
-```bash
-composer require laravel/boost --dev
+composer install
+<h3>Step 3 — Create the environment file and application key</h3>
 
-php artisan boost:install
-```
+Windows PowerShell:
+Copy-Item .env.example .env
+php artisan key:generate
+macOS/Linux:
+cp .env.example .env
+php artisan key:generate
+<h3>Step 4 — Set up SQLite</h3>
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+<p>In <code>.env</code>, set <code>DB_CONNECTION=sqlite</code>. Ensure <code>database/database.sqlite</code> exists:</p>
 
-## Contributing
+Windows PowerShell:
+New-Item database/database.sqlite -ItemType File
+macOS/Linux:
+touch database/database.sqlite
+<p>If the file already exists, skip its creation.</p>
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+<h3>Step 5 — Run migrations</h3>
 
-## Code of Conduct
+php artisan migrate
+<h3>Step 6 — Start the development server</h3>
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+php artisan serve
 
-## Security Vulnerabilities
+<h2>3. API Routes</h2>
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+<p>The Esports API contains nine routes. Public routes do not
+require authentication, while protected routes require a
+Laravel Sanctum Bearer token.</p>
 
-## License
+<table>
+  <thead>
+    <tr>
+      <th>HTTP Verb</th>
+      <th>Path</th>
+      <th>What It Does</th>
+      <th>Token Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>POST</td>
+      <td><code>/api/register</code></td>
+      <td>Registers a new user and returns a token</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td>POST</td>
+      <td><code>/api/login</code></td>
+      <td>Authenticates a user and returns a token</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td>POST</td>
+      <td><code>/api/logout</code></td>
+      <td>Revokes the current authentication token</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>GET</td>
+      <td><code>/api/me</code></td>
+      <td>Returns the authenticated user's information</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>GET</td>
+      <td><code>/api/esports</code></td>
+      <td>Lists esports records with optional filters</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>POST</td>
+      <td><code>/api/esports</code></td>
+      <td>Creates a new esports record</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>GET</td>
+      <td><code>/api/esports/{esport}</code></td>
+      <td>Retrieves one esports record by ID</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>PUT</td>
+      <td><code>/api/esports/{esport}</code></td>
+      <td>Updates an existing esports record</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>DELETE</td>
+      <td><code>/api/esports/{esport}</code></td>
+      <td>Deletes an esports record</td>
+      <td>Yes</td>
+    </tr>
+  </tbody>
+</table>
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+<h2>4. 10 Screenshots</h2>
+
+### Test 1: Registration — 201 Created
+![Registration](screenshots/im1.png)
+
+### Test 2: Login — 200 OK
+![Login](screenshots/im2.png)
+
+### Test 3: Unauthorized Access — 401 Unauthorized
+![Unauthorized Access](screenshots/im3.png)
+
+### Test 4: Authorized Access — 200 OK
+![Authorized Access](screenshots/im4.png)
+
+### Test 5: Create Esports Record — 201 Created
+![Create Record](screenshots/im5.png)
+
+### Test 6: Validation Error — 422 Unprocessable Entity
+![Validation Error](screenshots/im6.png)
+
+### Test 7: Retrieve Esports Record — 200 OK
+![Retrieve Record](screenshots/im7.png)
+
+### Test 8: Record Not Found — 404 Not Found
+![Record Not Found](screenshots/im8.png)
+
+### Test 9: Update Esports Record — 200 OK
+![Update Record](screenshots/im9.png)
+
+### Test 10: Delete Esports Record — 204 No Content
+![Delete Record](screenshots/im10.png)
+
+<h2>5. Why does DELETE return 204 and not 200?</h2>
+<p>A <b>204</b> is returned because the content is deleted, no content is displayed and nothing to return. Unlike code <b>200</b>, it returns the data, json, and body. That is why the code <b>204</b> is the appropriate to use in Delete operations.</p>
+
