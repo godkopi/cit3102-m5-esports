@@ -49,7 +49,7 @@ Laravel Sanctum Bearer token.</p>
 <table>
   <thead>
     <tr>
-      <th>HTTP Verb</th>
+      <th>HTTP Request</th>
       <th>Path</th>
       <th>What It Does</th>
       <th>Token Required</th>
