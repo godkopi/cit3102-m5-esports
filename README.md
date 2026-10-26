@@ -13,11 +13,11 @@
 <h2>1. Project Information</h2>
 
 
-<p>This API manages esports team records with <code>game_title</code>, <code>team_name</code>, <code>roster</code>, and <code>wins</code> fields. It uses Laravel Sanctum to protect resource endpoints.</p>
+<p>This API manages esports team records with game_title, team_name, roster, and wins fields.</p>
 
 <h2>2. Setup Instructions</h2>
 
-<p><strong>Prerequisites:</strong> PHP, Composer, Git, and PHP SQLite extensions pdo_sqlite</code> and <code>sqlite3.</p>
+<p><strong>Prerequisites:</strong> PHP, Composer, Git, and PHP SQLite extensions pdo_sqlite</code> and sqlite3.</p>
 
 <h3>Step 1 - Clone the repository</h3>
 git clone https://github.com/godkopi/cit3102-m5-esports.git
@@ -31,13 +31,11 @@ composer install
 Windows PowerShell:
 Copy-Item .env.example .env
 php artisan key:generate
-macOS/Linux:
-cp .env.example .env
-php artisan key:generate
 
 <h3>Step 4 - Run migrations</h3>
 
 php artisan migrate
+
 <h3>Step 5 - Start the development server </h3>
 
 php artisan serve
