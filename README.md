@@ -17,16 +17,16 @@
 
 <h2>2. Setup Instructions</h2>
 
-<p><strong>Prerequisites:</strong> PHP, Composer, Git, and PHP SQLite extensions (<code>pdo_sqlite</code> and <code>sqlite3</code>).</p>
+<p><strong>Prerequisites:</strong> PHP, Composer, Git, and PHP SQLite extensions pdo_sqlite</code> and <code>sqlite3.</p>
 
-<h3>Step 1 — Clone the repository</h3>
+<h3>Step 1 - Clone the repository</h3>
 git clone https://github.com/godkopi/cit3102-m5-esports.git
 cd cit3102-m5-esports
 
-<h3>Step 2 — Install PHP dependencies</h3>
+<h3>Step 2 - Install PHP dependencies</h3>
 
 composer install
-<h3>Step 3 — Create the environment file and application key</h3>
+<h3>Step 3 - Create the environment file and application key</h3>
 
 Windows PowerShell:
 Copy-Item .env.example .env
@@ -34,20 +34,11 @@ php artisan key:generate
 macOS/Linux:
 cp .env.example .env
 php artisan key:generate
-<h3>Step 4 — Set up SQLite</h3>
 
-<p>In <code>.env</code>, set <code>DB_CONNECTION=sqlite</code>. Ensure <code>database/database.sqlite</code> exists:</p>
-
-Windows PowerShell:
-New-Item database/database.sqlite -ItemType File
-macOS/Linux:
-touch database/database.sqlite
-<p>If the file already exists, skip its creation.</p>
-
-<h3>Step 5 — Run migrations</h3>
+<h3>Step 4 - Run migrations</h3>
 
 php artisan migrate
-<h3>Step 6 — Start the development server</h3>
+<h3>Step 5 - Start the development server </h3>
 
 php artisan serve
 
