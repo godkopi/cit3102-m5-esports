@@ -115,34 +115,34 @@ Laravel Sanctum Bearer token.</p>
 
 <h2>4. 10 Screenshots</h2>
 
-### Test 1: Registration — 201 Created
+### Test 1: Registration - 201 Created
 ![Registration](screenshots/im1.png)
 
-### Test 2: Login — 200 OK
+### Test 2: Login - 200 OK
 ![Login](screenshots/im2.png)
 
-### Test 3: Unauthorized Access — 401 Unauthorized
+### Test 3: Unauthorized Access - 401 Unauthorized
 ![Unauthorized Access](screenshots/im3.png)
 
-### Test 4: Authorized Access — 200 OK
+### Test 4: Authorized Access - 200 OK
 ![Authorized Access](screenshots/im4.png)
 
-### Test 5: Create Esports Record — 201 Created
+### Test 5: Create Esports Record - 201 Created
 ![Create Record](screenshots/im5.png)
 
-### Test 6: Validation Error — 422 Unprocessable Entity
+### Test 6: Validation Error - 422 Unprocessable Entity
 ![Validation Error](screenshots/im6.png)
 
-### Test 7: Retrieve Esports Record — 200 OK
+### Test 7: Retrieve Esports Record - 200 OK
 ![Retrieve Record](screenshots/im7.png)
 
-### Test 8: Record Not Found — 404 Not Found
+### Test 8: Record Not Found - 404 Not Found
 ![Record Not Found](screenshots/im8.png)
 
-### Test 9: Update Esports Record — 200 OK
+### Test 9: Update Esports Record - 200 OK
 ![Update Record](screenshots/im9.png)
 
-### Test 10: Delete Esports Record — 204 No Content
+### Test 10: Delete Esports Record - 204 No Content
 ![Delete Record](screenshots/im10.png)
 
 <h2>5. Why does DELETE return 204 and not 200?</h2>
